@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技能樹：核心能力</title>
+    <style>
+        :root { --gold: #c8aa6e; --blue: #0ac8b9; --dark: #010a13; }
+        body { background: var(--dark); color: #f0e6d2; font-family: "Microsoft JhengHei", sans-serif; display: flex; justify-content: center; padding: 40px 20px; margin: 0; }
+        .card { width: 100%; max-width: 750px; border: 2px solid var(--gold); background: rgba(5, 25, 35, 0.95); padding: 40px; }
+        h2 { color: var(--gold); border-bottom: 2px solid var(--gold); padding-bottom: 10px; }
+        
+        .stat-row { margin-bottom: 25px; }
+        .stat-label { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; color: var(--blue); }
+        .bar-bg { background: #1a1a1a; height: 12px; border: 1px solid #333; }
+        .bar-fill { background: linear-gradient(90deg, var(--blue), #fff); height: 100%; width: 0%; transition: width 1.5s ease-in-out; }
+        
+        .desc { font-size: 0.9em; color: #aaa; margin-top: 8px; line-height: 1.5; padding-left: 10px; border-left: 2px solid #333; }
+        .back-btn { display: inline-block; margin-top: 30px; padding: 10px 20px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-weight: bold; }
+        .back-btn:hover { background: var(--gold); color: var(--dark); }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>[ 技能樹分析 ]</h2>
+
+        <div class="stat-row">
+            <div class="stat-label"><span>文案與社群觀察力</span><span>95%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
+            <div class="desc">學測國文15級分、具社群高度敏感度，擅長掌握 Facebook/IG/Threads 輿論與內容趨勢。</div>
+        </div>
+
+        <div class="stat-row">
+            <div class="stat-label"><span>數據分析 (R/SPSS)</span><span>85%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
+            <div class="desc">執行國科會大專生研究計畫，能使用統計工具處理複雜資料。</div>
+        </div>
+
+        <div class="stat-row">
+            <div class="stat-label"><span>AI & Coding 應用</span><span>90%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
+            <div class="desc">具 C++ 基礎，能獨立與 AI 協作開發網頁及軟體，理解產品邏輯與工程溝通。</div>
+        </div>
+
+        <div class="stat-row">
+            <div class="stat-label"><span>溝通與美術表現</span><span>80%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 80%;"></div></div>
+            <div class="desc">具備基本視覺設計感，樂於在扁平化組織中提出多樣化觀點。</div>
+        </div>
+
+        <a href="index.html" class="back-btn">← 返回主選單</a>
+    </div>
+</body>
+</html>
