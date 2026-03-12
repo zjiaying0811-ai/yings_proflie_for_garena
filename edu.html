@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學經歷系統 | 張佳瑩 YING</title>
+    <style>
+        :root {
+            --gold: #c8aa6e;
+            --blue: #0ac8b9;
+            --dark: #010a13;
+            --gray: #a0a0a0;
+        }
+        body {
+            background: var(--dark);
+            background-image: linear-gradient(rgba(1, 10, 19, 0.8), rgba(1, 10, 19, 0.8)), url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            color: #f0e6d2;
+            font-family: "Microsoft JhengHei", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .detail-card {
+            width: 90%;
+            max-width: 700px;
+            border: 2px solid var(--gold);
+            background: rgba(5, 25, 35, 0.95);
+            padding: 30px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 1);
+            position: relative;
+        }
+        .header {
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        h2 { color: var(--gold); margin: 0; letter-spacing: 3px; }
+        
+        /* 學經歷條目 */
+        .entry {
+            margin-bottom: 30px;
+            border-left: 3px solid var(--blue);
+            padding-left: 20px;
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+
+        .entry-title { color: var(--gold); font-size: 1.2em; font-weight: bold; }
+        .entry-subtitle { color: var(--blue); font-size: 0.9em; margin: 5px 0; }
+        .entry-desc { color: var(--gray); font-size: 0.95em; line-height: 1.6; }
+
+        /* 返回按鈕 */
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .back-btn:hover {
+            background: var(--gold);
+            color: var(--dark);
+            box-shadow: 0 0 15px var(--gold);
+        }
+    </style>
+</head>
+<body>
+
+<div class="detail-card">
+    <div class="header">
+        <h2>戰鬥紀錄：學經歷</h2>
+        <span style="color: var(--blue);">STATUS: UPDATED</span>
+    </div>
+
+    <div class="entry">
+        <div class="entry-title">國立台灣大學 (NTU)</div>
+        <div class="entry-subtitle">經濟學系 | 20XX - 20XX</div>
+        <div class="entry-desc">
+            專注於資料分析與市場邏輯，訓練出嚴謹的量化思維。
+        </div>
+    </div>
+
+    <div class="entry">
+        <div class="entry-title">實習經驗 / 專案經歷</div>
+        <div class="entry-subtitle">Garena 冒險者 | 20XX</div>
+        <div class="entry-desc">
+            在這裡填寫你過去的實習或是參與過的重點專案。
+            例如：負責優化用戶體驗流程，或是執行市場分析報告。
+        </div>
+    </div>
+
+    <a href="index.html" class="back-btn">← 返回主選單</a>
+</div>
+
+</body>
+</html>
