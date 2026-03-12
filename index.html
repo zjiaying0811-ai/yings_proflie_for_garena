@@ -1,112 +1,61 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人履歷 | Resume</title>
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --bg-color: #f4f7f6;
-        }
-        body {
-            font-family: "Microsoft JhengHei", Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            background-color: var(--bg-color);
-            color: var(--primary-color);
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            background: #fff;
-            padding: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-radius: 8px;
-        }
-        header {
-            text-align: center;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        h1 { margin: 0; color: var(--primary-color); }
-        .contact { color: #666; font-size: 0.9em; }
-        
-        h2 {
-            border-left: 5px solid var(--accent-color);
-            padding-left: 15px;
-            margin-top: 30px;
-            color: var(--primary-color);
-        }
-        .job, .edu {
-            margin-bottom: 20px;
-        }
-        .job-title { font-weight: bold; display: flex; justify-content: space-between; }
-        .skills span {
-            background: var(--accent-color);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            margin-right: 5px;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
+:root {
+    --primary-color: #010a13; /* 深藍黑底色 */
+    --accent-color: #c8aa6e;  /* 經典英雄聯盟金色 */
+    --secondary-color: #0ac8b9; /* 技能藍色 */
+    --text-color: #f0e6d2;
+}
 
-<div class="container">
-    <header>
-        <h1>王小明 (Your Name)</h1>
-        <p class="contact">台北市 | 0912-345-678 | email@example.com</p>
-        <p>熱衷於解決問題與持續學習的軟體工程師 / 產品經理</p>
-    </header>
+body {
+    background-color: var(--primary-color);
+    background-image: radial-gradient(circle, #051923 0%, #010a13 100%);
+    color: var(--text-color);
+    font-family: "Microsoft JhengHei", sans-serif;
+    margin: 0;
+    padding: 20px;
+    /* 這裡可以更換鼠標圖示 */
+    cursor: crosshair; 
+}
 
-    <section>
-        <h2>核心技能</h2>
-        <div class="skills">
-            <span>JavaScript</span> <span>React</span> <span>Node.js</span>
-            <span>專案管理</span> <span>UI/UX 設計</span> <span>Python</span>
-        </div>
-    </section>
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    border: 2px solid var(--accent-color);
+    background: rgba(1, 10, 19, 0.95);
+    padding: 40px;
+    box-shadow: 0 0 30px rgba(200, 170, 110, 0.2);
+    border-radius: 4px;
+}
 
-    <section>
-        <h2>工作經歷</h2>
-        <div class="job">
-            <div class="job-title">
-                <span>高級開發工程師 | 某知名科技公司</span>
-                <span>2021 - 至今</span>
-            </div>
-            <ul>
-                <li>負責優化核心產品前端架構，提升網頁載入速度達 40%。</li>
-                <li>領導 5 人開發團隊完成年度重點專案。</li>
-            </ul>
-        </div>
-        <div class="job">
-            <div class="job-title">
-                <span>初級工程師 | 創新新創公司</span>
-                <span>2019 - 2021</span>
-            </div>
-            <ul>
-                <li>開發響應式網頁，確保跨裝置瀏覽體驗。</li>
-                <li>協助建立自動化測試流程。</li>
-            </ul>
-        </div>
-    </section>
+h1 {
+    text-align: center;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px rgba(200, 170, 110, 0.5);
+}
 
-    <section>
-        <h2>學歷</h2>
-        <div class="edu">
-            <div class="job-title">
-                <span>國立某某大學 資訊工程系</span>
-                <span>2015 - 2019</span>
-            </div>
-        </div>
-    </section>
-</div>
+h2 {
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--accent-color);
+    padding-bottom: 5px;
+}
 
-</body>
-</html>
+/* 把技能變成技能按鈕 */
+.skills span {
+    display: inline-block;
+    background: linear-gradient(180deg, #1e2328 0%, #010a13 100%);
+    border: 2px solid #5c5b57;
+    color: var(--text-color);
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.skills span:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-color);
+    transform: scale(1.1);
+}
