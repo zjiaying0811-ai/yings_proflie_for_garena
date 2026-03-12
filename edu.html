@@ -2,37 +2,50 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>戰鬥紀錄：學經歷</title>
+    <title>戰鬥編年史 | 張佳瑩</title>
     <style>
         :root { --gold: #c8aa6e; --blue: #0ac8b9; --dark: #010a13; }
-        body { background: var(--dark); color: #f0e6d2; font-family: "Microsoft JhengHei", sans-serif; display: flex; justify-content: center; padding: 40px 20px; margin: 0; }
-        .card { width: 100%; max-width: 750px; border: 2px solid var(--gold); background: rgba(5, 25, 35, 0.95); padding: 40px; box-shadow: 0 0 50px #000; position: relative; }
-        h2 { color: var(--gold); border-bottom: 2px solid var(--gold); padding-bottom: 10px; letter-spacing: 2px; }
-        .section-title { color: var(--blue); font-weight: bold; margin-top: 25px; font-size: 1.1em; display: flex; align-items: center; }
-        .section-title::before { content: "▶"; margin-right: 10px; font-size: 0.8em; }
-        p { line-height: 1.7; color: #ccc; margin: 10px 0 20px 25px; }
-        .back-btn { display: inline-block; margin-top: 30px; padding: 10px 20px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-weight: bold; transition: 0.3s; }
-        .back-btn:hover { background: var(--gold); color: var(--dark); box-shadow: 0 0 15px var(--gold); }
+        body { background: var(--dark); color: #f0e6d2; font-family: "Microsoft JhengHei", sans-serif; padding: 50px 20px; }
+        .timeline { max-width: 800px; margin: auto; position: relative; }
+        .timeline::before { content: ''; position: absolute; left: 50%; width: 2px; height: 100%; background: var(--gold); }
+        .node { position: relative; margin-bottom: 50px; width: 50%; padding: 20px; box-sizing: border-box; }
+        .node:nth-child(odd) { left: 0; text-align: right; padding-right: 40px; }
+        .node:nth-child(even) { left: 50%; text-align: left; padding-left: 40px; }
+        .node::after { content: '★'; position: absolute; top: 20px; width: 30px; height: 30px; background: var(--dark); border: 2px solid var(--gold); border-radius: 50%; color: var(--gold); text-align: center; line-height: 30px; }
+        .node:nth-child(odd)::after { right: -17px; }
+        .node:nth-child(even)::after { left: -17px; }
+        .content { background: rgba(200,170,110,0.1); border: 1px solid var(--gold); padding: 15px; border-radius: 5px; }
+        h3 { color: var(--blue); margin-top: 0; }
+        .back { position: fixed; bottom: 20px; right: 20px; padding: 10px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2>[ 檔案編號：張佳瑩 YING ]</h2>
-        
-        <div class="section-title">自我介紹</div>
-        <p>目前就讀於臺灣大學經濟學系，雙主修社會學。擅長將經濟學的決策邏輯與社會學的脈絡觀察結合，轉化為對市場與社群文化的獨到見解。</p>
-
-        <div class="section-title">學術背景：經濟與社會學</div>
-        <p>經濟學訓練讓我具備數理分析與消費者行為理論；社會學則培養我宏觀觀察玩家選擇的能力。這種跨學科視野，能讓我精準詮釋玩家在社群中的情緒轉變。</p>
-
-        <div class="section-title">組織經歷：系學會活動部</div>
-        <p>擔任總召舉辦大型活動，從企劃、廠商溝通到社群宣傳一手包辦，具備強大的團隊推進與人力協調能力。</p>
-
-        <div class="section-title">語言能力</div>
-        <p>TOEIC 865 分 / 全民英檢中高級 / 澳洲短期遊學經驗。</p>
-
-        <a href="index.html" class="back-btn">← 返回主選單</a>
+    <div class="timeline">
+        <div class="node">
+            <div class="content">
+                <h3>啟程：社會學洞察</h3>
+                <p>大三轉入經濟系前，在社會學淬鍊宏觀視角。學會將「玩家選擇」放入社會結構中詮釋，這是我理解社群文化的核心引擎。</p>
+            </div>
+        </div>
+        <div class="node">
+            <div class="content">
+                <h3>轉職：台大經濟雙修</h3>
+                <p>為了兼顧愛好與專業，轉入經濟系。獲得了數理分析、消費者行為與決策邏輯，能以數據客觀解構市場現象。</p>
+            </div>
+        </div>
+        <div class="node">
+            <div class="content">
+                <h3>公會任務：系學會活動部</h3>
+                <p>擔任總召舉辦「酒精社會學」等活動。點滿了企劃、廠商溝通、社群宣傳與人力調度等實戰技能。</p>
+            </div>
+        </div>
+        <div class="node">
+            <div class="content">
+                <h3>海外遠征：澳洲遊學</h3>
+                <p>TOEIC 865分，通過中高級英檢。具備跨國溝通與獨立探索的探險者精神。</p>
+            </div>
+        </div>
     </div>
+    <a href="index.html" class="back">← 返回營地</a>
 </body>
 </html>
