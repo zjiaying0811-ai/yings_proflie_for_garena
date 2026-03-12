@@ -2,50 +2,193 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>戰鬥編年史 | 張佳瑩</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>戰鬥編年史 | 張佳瑩 YING</title>
     <style>
-        :root { --gold: #c8aa6e; --blue: #0ac8b9; --dark: #010a13; }
-        body { background: var(--dark); color: #f0e6d2; font-family: "Microsoft JhengHei", sans-serif; padding: 50px 20px; }
-        .timeline { max-width: 800px; margin: auto; position: relative; }
-        .timeline::before { content: ''; position: absolute; left: 50%; width: 2px; height: 100%; background: var(--gold); }
-        .node { position: relative; margin-bottom: 50px; width: 50%; padding: 20px; box-sizing: border-box; }
-        .node:nth-child(odd) { left: 0; text-align: right; padding-right: 40px; }
-        .node:nth-child(even) { left: 50%; text-align: left; padding-left: 40px; }
-        .node::after { content: '★'; position: absolute; top: 20px; width: 30px; height: 30px; background: var(--dark); border: 2px solid var(--gold); border-radius: 50%; color: var(--gold); text-align: center; line-height: 30px; }
-        .node:nth-child(odd)::after { right: -17px; }
-        .node:nth-child(even)::after { left: -17px; }
-        .content { background: rgba(200,170,110,0.1); border: 1px solid var(--gold); padding: 15px; border-radius: 5px; }
-        h3 { color: var(--blue); margin-top: 0; }
-        .back { position: fixed; bottom: 20px; right: 20px; padding: 10px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; }
+        :root {
+            --gold: #c8aa6e;
+            --blue: #0ac8b9;
+            --dark: #010a13;
+            --glass: rgba(1, 10, 19, 0.95);
+        }
+
+        /* 基礎設定 */
+        body {
+            background: var(--dark);
+            background-image: radial-gradient(circle, #051923 0%, #010a13 100%);
+            color: #f0e6d2;
+            font-family: "Microsoft JhengHei", "Apple LiGothic Medium", sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* 動畫期間禁止手動滾動 */
+        }
+
+        /* 卷軸容器：橫向展開動畫 */
+        .scroll-container {
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            background: var(--glass);
+            border: 2px solid var(--gold);
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            transform-origin: center;
+            animation: scroll-open 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            overflow: hidden; /* 隱藏內部滾動內容 */
+        }
+
+        @keyframes scroll-open {
+            0% { transform: scaleX(0); opacity: 0; }
+            100% { transform: scaleX(1); opacity: 1; }
+        }
+
+        /* 內容包裹層：執行急速俯衝動畫 */
+        .content-wrapper {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            /* 動畫分解：停頓 -> 急速俯衝到底 -> 回彈 -> 固定在頂部 */
+            animation: cinematic-dive 3.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
+        }
+
+        @keyframes cinematic-dive {
+            0% { transform: translateY(0); }         /* 初始位置：自我介紹 */
+            25% { transform: translateY(0); }        /* 停頓讓玩家看清楚標題 */
+            60% { transform: translateY(-75%); }     /* 急速俯衝瀏覽所有經歷 */
+            80% { transform: translateY(-75%); }     /* 在底部稍微停頓回顧 */
+            100% { transform: translateY(0); }       /* 強力回彈固定在首頁 */
+        }
+
+        /* 經歷條目樣式 */
+        .node {
+            border-left: 3px solid var(--blue);
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .node h2 {
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .node h3 {
+            color: var(--blue);
+            margin: 0 0 15px 0;
+            font-size: 1.1em;
+        }
+
+        .node p {
+            line-height: 1.8;
+            color: #ccc;
+            margin: 0;
+            text-align: justify;
+        }
+
+        /* 卷軸邊緣裝飾 */
+        .scroll-edge {
+            position: absolute;
+            left: 0; width: 100%; height: 15px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            z-index: 10;
+            box-shadow: 0 0 15px var(--gold);
+        }
+        .top-edge { top: 0; }
+        .bottom-edge { bottom: 0; }
+
+        /* 掃描線特效 */
+        .scanline {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(10, 200, 185, 0) 0%, rgba(10, 200, 185, 0.1) 50%, rgba(10, 200, 185, 0) 100%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 5;
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100%); }
+        }
+
+        /* 返回按鈕 */
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 12px 25px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+            background: rgba(0,0,0,0.5);
+            transition: 0.3s;
+            z-index: 100;
+        }
+
+        .back-btn:hover {
+            background: var(--gold);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--gold);
+        }
     </style>
 </head>
 <body>
-    <div class="timeline">
-        <div class="node">
-            <div class="content">
-                <h3>啟程：社會學洞察</h3>
-                <p>大三轉入經濟系前，在社會學淬鍊宏觀視角。學會將「玩家選擇」放入社會結構中詮釋，這是我理解社群文化的核心引擎。</p>
+
+    <div class="scroll-container">
+        <div class="top-edge"></div>
+        <div class="scanline"></div>
+        
+        <div class="content-wrapper">
+            <div class="node">
+                <h2>[ 英雄特寫：張佳瑩 YING ]</h2>
+                <h3>自我介紹</h3>
+                <p>目前就讀於臺灣大學經濟學系，並雙主修社會學。我擅長將經濟學的決策邏輯與社會學的脈絡觀察結合，轉化為對市場與社群文化的獨到見解。在沒有指導的情況下，我能獨立與 AI 協作開發出你現在所看到的這一切。</p>
             </div>
-        </div>
-        <div class="node">
-            <div class="content">
-                <h3>轉職：台大經濟雙修</h3>
-                <p>為了兼顧愛好與專業，轉入經濟系。獲得了數理分析、消費者行為與決策邏輯，能以數據客觀解構市場現象。</p>
+
+            <div class="node">
+                <h2>[ 核心屬性：跨域思維 ]</h2>
+                <h3>經濟學 × 社會學</h3>
+                <p>經濟學讓我學會透過數據觀察市場並給予客觀詮釋；社會學則訓練我從宏觀視角觀察社會現象。這兩種訓練與遊戲行銷契合：理解一位玩家的選擇，並將其放入整體市場與社群文化中進行詮釋。</p>
             </div>
-        </div>
-        <div class="node">
-            <div class="content">
-                <h3>公會任務：系學會活動部</h3>
-                <p>擔任總召舉辦「酒精社會學」等活動。點滿了企劃、廠商溝通、社群宣傳與人力調度等實戰技能。</p>
+
+            <div class="node">
+                <h2>[ 戰鬥經歷：系學會活動部 ]</h2>
+                <h3>總召集人 | 酒精社會學 / 系烤</h3>
+                <p>在籌備大型活動的過程中，我點滿了活動企劃、團隊進度推進、廠商溝通、社群宣傳、人力協調與現場主持等全方位能力，並致力於經驗的傳承。 </p>
             </div>
-        </div>
-        <div class="node">
-            <div class="content">
-                <h3>海外遠征：澳洲遊學</h3>
-                <p>TOEIC 865分，通過中高級英檢。具備跨國溝通與獨立探索的探險者精神。</p>
+
+            <div class="node">
+                <h2>[ 被動技能：英語能力 ]</h2>
+                <h3>語言能力與海外遊學</h3>
+                <p>具備 TOEIC 865 分實力與全民英檢中高級通過認證。曾赴澳洲短期遊學，具備在不同文化脈絡下快速適應與溝通的探險者特質。</p>
             </div>
+            
+            <div style="height: 200px;"></div>
         </div>
+
+        <div class="bottom-edge"></div>
     </div>
-    <a href="index.html" class="back">← 返回營地</a>
+
+    <a href="index.html" class="back-btn">← 返回主選單 (ESC)</a>
+
+    <script>
+        // 加入按鍵 ESC 返回功能
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') window.location.href = 'index.html';
+        });
+
+        // 模擬進場音效
+        const startSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
+        window.onload = () => {
+            setTimeout(() => { startSound.play(); }, 100);
+        };
+    </script>
 </body>
 </html>
