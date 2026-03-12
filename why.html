@@ -2,29 +2,28 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>為什麼選擇 Garena</title>
+    <title>任務：為什麼加入 Garena</title>
     <style>
         :root { --gold: #c8aa6e; --blue: #0ac8b9; --dark: #010a13; }
-        body { background: var(--dark); color: #f0e6d2; font-family: "Microsoft JhengHei", sans-serif; display: flex; justify-content: center; padding: 40px 20px; margin: 0; }
-        .card { width: 100%; max-width: 750px; border: 2px solid var(--gold); background: rgba(5, 25, 35, 0.95); padding: 40px; }
-        h2 { color: var(--gold); border-bottom: 2px solid var(--gold); padding-bottom: 10px; }
-        .quote { font-style: italic; color: var(--blue); border-left: 4px solid var(--blue); padding-left: 15px; margin: 25px 0; font-size: 1.1em; }
-        p { line-height: 1.8; color: #ccc; }
-        .back-btn { display: inline-block; margin-top: 30px; padding: 10px 20px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-weight: bold; }
+        body { background: var(--dark); color: #f0e6d2; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100vh; margin: 0; padding-bottom: 50px; }
+        .dialog-box { width: 80%; max-width: 800px; border: 3px solid var(--gold); background: rgba(0,0,0,0.9); padding: 30px; position: relative; }
+        .npc-name { position: absolute; top: -20px; left: 20px; background: var(--gold); color: #000; padding: 5px 20px; font-weight: bold; }
+        .text { font-size: 1.2em; line-height: 1.6; min-height: 100px; }
+        .options { margin-top: 20px; display: flex; gap: 10px; }
+        .opt { border: 1px solid var(--blue); color: var(--blue); padding: 5px 15px; cursor: pointer; text-decoration: none; }
+        .opt:hover { background: var(--blue); color: #000; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2>[ 任務動機：為什麼是 Garena ]</h2>
-
-        <p>作為《傳說對決》9 年的長期玩家，我對遊戲不只是娛樂，更是一種社群連結與情感歸屬。我希望在最好的遊戲企業學習，與頂尖團隊並肩作戰。</p>
-
-        <div class="quote">「 讓玩家滿意，是我們回家的路 」</div>
-
-        <p>這句話深深觸動我。對我而言，一個好的遊戲可以調節情緒、建立連結。我希望運用我的社群觀察力與分析背景，讓玩家在活動與內容設計中，重新感受到這份歸屬感與歸向感。</p>
-
-        <a href="index.html" class="back-btn">← 返回主選單</a>
+    <div class="dialog-box">
+        <div class="npc-name">冒險者 張佳瑩</div>
+        <div class="text" id="typewriter">
+            「我是《傳說對決》9年的老玩家。對我來說，遊戲是現實的出口。我認同 Garena 『讓玩家滿意，是我們回家的路』的理念。我希望加入最好的團隊，讓情感連結成為玩家的歸屬。」
+        </div>
+        <div class="options">
+            <a href="index.html" class="opt">接受任務：加入 Garena</a>
+            <a href="index.html" class="opt">返回主選單</a>
+        </div>
     </div>
 </body>
 </html>
