@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>召喚師履歷 | YING's Profile</title>
+    <style>
+        :root {
+            --gold: #c8aa6e;
+            --blue: #0ac8b9;
+            --dark: #010a13;
+        }
+        body {
+            background: var(--dark);
+            color: #f0e6d2;
+            font-family: "Microsoft JhengHei", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            cursor: crosshair;
+        }
+        .interface {
+            border: 2px solid var(--gold);
+            padding: 40px;
+            background: rgba(0,0,0,0.9);
+            box-shadow: 0 0 30px rgba(200, 170, 110, 0.3);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+        h1 { color: var(--gold); letter-spacing: 10px; text-transform: uppercase; }
+        .skill-group { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
+        .skill {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border: 2px solid #5c5b57;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1e2328;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .skill:hover { border-color: var(--gold); box-shadow: 0 0 20px var(--gold); transform: scale(1.1); }
+        .key {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: var(--gold);
+            color: #000;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="interface">
+    <h1>YING</h1>
+    <p style="color: var(--blue);">等級 99 | 傳奇開發者</p>
+    <hr style="border: 0.5px solid var(--gold); opacity: 0.3;">
+    
+    <div class="skill-group">
+        <div class="skill" id="Q"><span class="key">Q</span>JS</div>
+        <div class="skill" id="W"><span class="key">W</span>React</div>
+        <div class="skill" id="E"><span class="key">E</span>Python</div>
+        <div class="skill" id="R"><span class="key">R</span>Node</div>
+    </div>
+    
+    <p style="margin-top: 30px; font-size: 14px; opacity: 0.6;">[ 提示：按下鍵盤 Q W E R 觸發技能 ]</p>
+</div>
+
+<script>
+    const sound = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
+    function cast(id) {
+        const el = document.getElementById(id);
+        if(!el) return;
+        sound.currentTime = 0;
+        sound.play();
+        el.style.boxShadow = "0 0 50px white";
+        el.style.borderColor = "white";
+        setTimeout(() => {
+            el.style.boxShadow = "";
+            el.style.borderColor = "";
+        }, 200);
+    }
+
+    // 點擊觸發
+    document.querySelectorAll('.skill').forEach(s => {
+        s.addEventListener('click', () => cast(s.id));
+    });
+
+    // 按鍵觸發
+    window.addEventListener('keydown', (e) => {
+        const key = e.key.toUpperCase();
+        if(['Q','W','E','R'].includes(key)) cast(key);
+    });
+</script>
+
+</body>
+</html>
