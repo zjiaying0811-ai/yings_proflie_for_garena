@@ -14,13 +14,13 @@
             background: var(--dark);
             background-image: radial-gradient(circle, #051923 0%, #010a13 100%);
             color: #f0e6d2;
-            font-family: "Microsoft JhengHei", sans-serif;
+            font-family: "Microsoft JhengHei", "Apple LiGothic Medium", sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            overflow: hidden; /* 防止滾動條影響遊戲感 */
+            overflow: hidden;
             cursor: crosshair;
         }
         .interface {
@@ -31,11 +31,11 @@
             text-align: center;
             width: 90%;
             max-width: 650px;
-            animation: fadeIn 1s ease-in;
+            animation: fadeIn 0.8s ease-in;
         }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-        h1 { color: var(--gold); letter-spacing: 5px; margin-bottom: 5px; font-size: 2.5em; }
+        h1 { color: var(--gold); letter-spacing: 5px; margin-bottom: 5px; font-size: 2.5em; text-shadow: 0 0 10px rgba(200, 170, 110, 0.5); }
         .sub-info { color: var(--blue); font-weight: bold; letter-spacing: 2px; margin-bottom: 20px; }
         
         .skill-group { 
@@ -45,8 +45,8 @@
             margin-top: 30px; 
         }
         
-        /* 連結樣式重置 */
-        .skill-link { text-decoration: none; color: inherit; display: block; }
+        /* 連結外層 */
+        .skill-link { text-decoration: none; color: inherit; display: block; outline: none; }
 
         .skill {
             position: relative;
@@ -57,7 +57,7 @@
             align-items: center;
             background: linear-gradient(180deg, #1e2328 0%, #010a13 100%);
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             font-weight: bold;
             font-size: 18px;
         }
@@ -77,6 +77,7 @@
             font-size: 12px;
             border-radius: 2px;
             box-shadow: 0 0 5px rgba(0,0,0,0.5);
+            pointer-events: none;
         }
         .footer-hint { margin-top: 40px; font-size: 12px; opacity: 0.5; letter-spacing: 1px; }
     </style>
@@ -89,61 +90,62 @@
     <hr style="border: 0.5px solid var(--gold); opacity: 0.3; width: 80%;">
     
     <div class="skill-group">
-        <a href="https://your-link-here.com/edu" class="skill-link" id="link-W">
+        <a href="edu.html" class="skill-link" id="link-W">
             <div class="skill" id="W"><span class="key">W</span>學經歷</div>
         </a>
-        <a href="https://your-link-here.com/skills" class="skill-link" id="link-A">
+        <a href="ability.html" class="skill-link" id="link-A">
             <div class="skill" id="A"><span class="key">A</span>能力</div>
         </a>
-        <a href="https://your-link-here.com/traits" class="skill-link" id="link-S">
+        <a href="traits.html" class="skill-link" id="link-S">
             <div class="skill" id="S"><span class="key">S</span>個人特質</div>
         </a>
-        <a href="https://your-link-here.com/why" class="skill-link" id="link-D">
+        <a href="why.html" class="skill-link" id="link-D">
             <div class="skill" id="D"><span class="key">D</span>WHY Garena</div>
         </a>
     </div>
     
-    <p class="footer-hint">[ 提示：點擊按鈕或按下鍵盤 WASD 進行轉跳 ]</p>
+    <p class="footer-hint">[ 系統提示：按下 WASD 施放對應技能以查看詳情 ]</p>
 </div>
 
 <script>
+    // 預載入音效以減少延遲
     const sound = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
 
-    function triggerAction(id) {
+    function executeNavigation(id) {
         const el = document.getElementById(id);
         const linkEl = document.getElementById('link-' + id);
-        if(!el) return;
+        if(!el || !linkEl) return;
         
-        // 播放音效
+        // 播放音效並重置播放點
         sound.currentTime = 0;
         sound.play();
 
-        // 視覺回饋
+        // 視覺特效觸發
         el.style.boxShadow = "0 0 50px white";
         el.style.borderColor = "white";
+        el.style.backgroundColor = "var(--gold)";
+        el.style.color = "var(--dark)";
         
-        // 延遲一小段時間再跳轉，讓使用者能看到動畫並聽到聲音
+        // 為了讓使用者看到特效與聽到聲音，設定 300 毫秒後跳轉
         setTimeout(() => {
-            if(linkEl) {
-                window.location.href = linkEl.href; 
-            }
+            window.location.href = linkEl.getAttribute('href'); 
         }, 300);
     }
 
-    // 鍵盤偵測 (WASD)
+    // 鍵盤按下事件
     window.addEventListener('keydown', (e) => {
         const key = e.key.toUpperCase();
         if(['W','A','S','D'].includes(key)) {
-            triggerAction(key);
+            executeNavigation(key);
         }
     });
 
-    // 點擊事件由 <a> 標籤自然觸發，但為了加上聲音特效，我們攔截它
+    // 滑鼠點擊事件 (攔截點擊以先執行特效)
     document.querySelectorAll('.skill-link').forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault(); // 先阻止直接跳轉
-            const id = this.querySelector('.skill').id;
-            triggerAction(id); // 執行帶有特效的跳轉
+            e.preventDefault(); 
+            const skillId = this.querySelector('.skill').id;
+            executeNavigation(skillId);
         });
     });
 </script>
